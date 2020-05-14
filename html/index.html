@@ -1,0 +1,54 @@
+<html>
+	<head> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+		<title>Yasen brew robot</title> 
+		<link rel="icon" href="data:,"> 
+		<link href="style.css" rel="stylesheet"> 
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+	</head>
+	<body>
+		<h1>Alco Robot Bender</h1> 
+		<p>
+			Насос: <strong id="pumpStatus"></strong>
+						<input type="checkbox" id="pumpSwicher" style="display:none"/>
+						<label for="pumpSwicher" class="toggle"><span></span></label>
+		</p>
+		<p>
+			ТЭН: <strong id="heatStatus"></strong>
+					<input type="checkbox" id="heatSwicher" style="display:none"/>
+					<label for="heatSwicher" class="toggle"><span></span></label>
+		</p>
+
+		<div id="processing">
+		</div>
+		  
+		<button onclick="addOneStep();" class="inline">Добавить шаг</button>
+		<button class="inline" id="removeOneStep" onclick="delOneStep();">Убрать щаг</button>
+		<button class="inline" id="startBrew" onclick="brew();">Начать варку</button>
+		<button class="inline" id="nextStep" onclick="stppBrew();">Принудительно остановить</button>
+
+		<h1>Процесс</h1>
+		<p>Датчик 1 (Ёмкость): <strong id="temp1"></strong></p>
+		<p>Датчик 2 (Колонна): <strong id="temp2"></strong></p>
+		<p>Датчик 3 (ХолВода): <strong id="temp3"></strong></p>
+
+		<p class="inline" >Этап № <strong id="proccesKeys"></strong></p>
+		<p class="inline" >Время до конца: <strong id="proccesTime"></strong></p>
+		<!--<p>Текущее время: <strong id="DateTime"></strong></p>-->
+		<div id="chart-temperature" class="container"></div>
+	</body>
+		<script type="text/javascript" src="script.js"></script>
+</html>
+<script>console.log('Done index.html')</script>
+                                             
+                                               
+                                         
+                                             
+
+                                        
+
+
+
+
+                                   
