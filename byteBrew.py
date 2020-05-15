@@ -169,13 +169,13 @@ async def temperature():
 
 async def pumpWorks(interval_ms):
     global pumpFlag
-    pumpFlag = True
+    #pumpFlag = True
     while True:
         if pumpFlag == True:
             pump.value(1)
-            await asyncio.sleep_ms(5000)
+            await asyncio.sleep_ms(60000*3)
             pump.value(0)
-            await asyncio.sleep_ms(5000)
+            await asyncio.sleep_ms(60000*5)
         elif pumpFlag == False:
             pump.value(0)
             await asyncio.sleep_ms(0)
@@ -200,7 +200,6 @@ async def heating(recept):
                     heat.value(1)
                 else:
                     heat.value(0)
-                    pauseTime = pauseTime - 1
                 await asyncio.sleep_ms(1000)
     pumpFlag = False
     heat.value(0)
@@ -246,9 +245,6 @@ async def web_page(request):
     if request.find('style.css') > 0:
         return fileReturn('style.css')
 
-    elif request.find('script.js') > 0:
-        return fileReturn('script.js')
-
     elif request.find('/?temp') > 0:
         return ('%s\n' % (await temperature()))
 
@@ -262,14 +258,11 @@ async def web_page(request):
         pump.value(not pump.value())
 
     elif request.find('/?brew=') > 0:
-        global grainIn
         recept = request.replace('%20', ' ').replace('%22', '"').split(' ')[2]
         brew = True
-        grainIn = not grainIn
-        while grainIn == True:
+        while brew == True:
             print(heating)
             grainIn = await heating(recept)
-        while brew == True:
             print(mashing)
             brew = await mashing(recept)
 
@@ -288,8 +281,8 @@ async def web_handler(reader, writer):
         await writer.aclose()
         #print("Finished processing request")
     except Exception as e:
-        #print(e)
-        raise e
+        print(e)
+        #raise e
 
     
 async def tcp_server(host, port):
