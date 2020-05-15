@@ -255,7 +255,7 @@ setInterval(function() {
     }
   }
   request.send();    
-}, 60000 ) ;     
+}, 5000 ) ;     
 console.log('Done charts.js');
                               
                               
