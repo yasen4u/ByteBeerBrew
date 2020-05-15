@@ -196,10 +196,10 @@ function getParam() {
 	data["param"]["boil"]["time"] = timeBoil.value;
 	data["param"]["boil"]["temp"] = 93;
 
-	var timeBoil = doc.querySelectorAll(".TimeHopAdd");
-	for (var i = 0; i < timeBoil.length; i++) {
+	var hopAdd = doc.querySelectorAll(".TimeHopAdd");
+	for (var i = 0; i < hopAdd.length; i++) {
 		data["param"]["hopAdd_"+[i+1]] = {};
-		data["param"]["hopAdd_"+[i+1]]["time"] = timeBoil[i].value;
+		data["param"]["hopAdd_"+[i+1]]["time"] = hopAdd[i].value;
 
 	}				
 
