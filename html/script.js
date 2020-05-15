@@ -29,7 +29,10 @@ function heatSwich() {
 }
 heat.addEventListener('click',heatSwich);
 console.log('Done script.js');
+//create global varibal
 var buttonBrewActivate=false; 
+//reload function update 
+//temp time and button on html page
 function isReload(){
 	var request3 = new XMLHttpRequest();
 	request3.open('GET','/?temp', true); 
@@ -46,6 +49,7 @@ function isReload(){
 					newText = "Приступить к затирке"
 					doc.getElementById("startBrew").innerHTML = newText;
 					doc.getElementById("startBrew").disabled = false;
+					buttonBrewActivate = false;
 				}
 				console.log(doc.getElementById("temp_id_1").value)
 				if (parseFloat(data[0]) < parseFloat(doc.getElementById("temp_id_1").value)){
@@ -154,7 +158,7 @@ function changeInput(event) {
 		doc.getElementById("temp_id_" + eCount).disabled = false;
 		doc.getElementById("time_id_" + eCount).disabled = true;
 		doc.getElementById("grainIn_" + eCount).classList.add("grainIn");
-		doc.getElementById("temp_id_" + eCount).classList.add("tempPauseCelsium");
+		doc.getElementById("temp_id_" + eCount).classList.add("tempGrainIn");
 		doc.getElementById("time_id_" + eCount).classList.remove("booling");
 		doc.getElementById("time_id_" + eCount).classList.remove("timeBoil");
 		doc.getElementById("time_id_" + eCount).classList.remove("hopAdd");
@@ -173,14 +177,13 @@ function getParam() {
 	data["data"] = (new Date()).getTime();
 	data["param"] = {};
 
-	var tempPauseCelsium = doc.querySelectorAll(".tempPauseCelsium");
-
-	var grainIn = doc.querySelectorAll(".grainIn");
-	for (var i = 0; i < grainIn.length; i++) {
-		data["param"]["grainIn_"+[i+1]] = {};
-		data["param"]["grainIn_"+[i+1]]["temp"] = tempPauseCelsium[i].value;
-	}
 	
+
+	var grainIn = doc.querySelectorAll(".tempGrainIn");
+	data["param"]["grainIn"] = {};
+	data["param"]["grainIn"]["temp"] = tempGrainIn.value;
+
+	var tempPauseCelsium = doc.querySelectorAll(".tempPauseCelsium");
 	var tempPauseTime = doc.querySelectorAll(".tempPauseTime");
 	for (var i = 0; i < tempPauseTime.length; i++) {
 		data["param"]["pause_"+[i+1]] = {};
